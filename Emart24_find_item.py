@@ -92,7 +92,8 @@ def Emart24_event():
     xpath = driver.find_element(By.CLASS_NAME,"tab01")
     xpaths = xpath.find_elements(By.CSS_SELECTOR, "a")
     for i in xpaths[1:]:
-        event.append(i.text)
+        TEXT = i.text
+        event.append(TEXT.replace(" ",""))
     
     # tap 들
     xpath_tap = [
