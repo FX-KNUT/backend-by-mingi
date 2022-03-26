@@ -1,13 +1,9 @@
-package com.event.event.dto;
+package com.event.backend.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class FindDto {
     private String brand;
@@ -23,6 +19,8 @@ public class FindDto {
         this.price = price;
         this.img = img;
     }
+
+    @Override
     public String toString(){
         return "브랜드 : " + brand + "\n이벤트 : " + event + "\n상품명 : " + name + "\n가격 : " + "\n이미지 : " + img;
     }

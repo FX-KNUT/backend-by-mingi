@@ -1,6 +1,6 @@
-package com.event.event.repository;
+package com.event.backend.repository;
 
-import com.event.event.dto.FindDto;
+import com.event.backend.dto.FindDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

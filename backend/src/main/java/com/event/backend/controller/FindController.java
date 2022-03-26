@@ -1,7 +1,7 @@
-package com.event.event.controller;
+package com.event.backend.controller;
 
-import com.event.event.dto.FindDto;
-import com.event.event.service.FindService;
+import com.event.backend.dto.FindDto;
+import com.event.backend.service.FindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

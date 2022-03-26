@@ -1,6 +1,6 @@
-package com.event.event.service;
+package com.event.backend.service;
 
-import com.event.event.repository.*;
+import com.event.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
