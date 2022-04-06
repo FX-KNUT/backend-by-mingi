@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class FindController {
     private FindService findService;
@@ -23,13 +25,30 @@ public class FindController {
 //
     FindDto findDto = new FindDto();
 // http://localhost:8080/?brand="MINISTOP"&event="1+1"&name="코"
+//@GetMapping()
+//public void findname(@RequestParam(value = "brand") String brand,
+//                     @RequestParam(value = "event") String event,
+//                     @RequestParam(value = "name") String name) throws Exception {
+//    if (findService.findname(brand, event, name )){
+//        System.out.println("connection");
+//    }
+//    else
+//        System.out.println("NO connection");
+//}
+//    @GetMapping()
+//    public void findname(@RequestParam(value = "brand") String brand,
+//                         @RequestParam(value = "event") String event) throws Exception {
+//        if (findService.findname(brand, event )){
+//            System.out.println("connection");
+//        }
+//        else
+//            System.out.println("NO connection");
+//    }
     @GetMapping()
-    public void findname(@RequestParam(value = "brand") String brand,
-                         @RequestParam(value = "event") String event) throws Exception {
-        if (findService.findname(brand,event)){
-            System.out.println("connection");
+    public void findname(@RequestParam(value = "brand") String brand) throws Exception {
+        List itemList = findService.findname(brand);
+        for (Object o : itemList) {
+            System.out.println(o);
         }
-        else
-            System.out.println("NO connection");
     }
 }
