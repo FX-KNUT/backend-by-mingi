@@ -22,6 +22,9 @@ public class FindDto {
 
     @Override
     public String toString(){
-        return "브랜드 : " + brand + "\n이벤트 : " + event + "\n상품명 : " + name + "\n가격 : " + "\n이미지 : " + img;
+        return "브랜드 : " + brand + "\n이벤트 : " + event + "\n상품명 : " + name + "\n가격 : " + price + "\n이미지 : " + img;
     }
 }
+
+
+

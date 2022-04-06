@@ -1,7 +1,6 @@
 package com.event.backend.repository;
 
 import com.event.backend.dto.FindDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -12,11 +11,13 @@ import java.util.Optional;
 public class FindRepository {
 
     // 의존성 주입
-    private DataSource DataSource;
-    @Autowired
-    // id 찾기
-    public Optional<FindDto> findname(String brand, String name) throws SQLException {
-        String sql = "select * from ? where name = LIKE '%?%'"; // sql문
+    private DataSource dataSource;
+    public FindRepository(DataSource dataSource){
+        this.dataSource = dataSource;
+    }
+
+    public Optional<FindDto> findname(String brand, String event) throws SQLException {
+        String sql = "SELECT * FROM event.cvs WHERE brand = ? AND event = ?";
         // DB 연결을 위한 객체들
         Connection conn = null;
         PreparedStatement ps = null;
@@ -24,14 +25,14 @@ public class FindRepository {
         FindDto findDto = new FindDto();
         // try-catch문
         try {
-            conn = DataSource.getConnection();
+            conn = dataSource.getConnection();
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, brand); // sql문에 1번쨰 ?에 brand 넣기
-            ps.setString(2,name); // sql문에 2번째 ?에 name 넣기
+            ps.setString(2,event); // sql문에 2번째 ?에 price 넣기
+           // ps.setString(3,name); // sql문에 3번째 ?에 name 넣기
 
             rs = ps.executeQuery(); // 객체 반환
-
 
             while (rs.next()) {
                 findDto.setBrand(rs.getString("brand"));
@@ -39,7 +40,7 @@ public class FindRepository {
                 findDto.setName(rs.getString("name"));
                 findDto.setPrice(rs.getString("price"));
                 findDto.setImg(rs.getString("img"));
-                System.out.print(findDto.toString());
+
                 return Optional.of(findDto);
             }
         }
@@ -53,3 +54,4 @@ public class FindRepository {
         return Optional.empty();
     }
 }
+
