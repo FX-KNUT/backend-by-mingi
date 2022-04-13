@@ -1,9 +1,6 @@
 package com.event.backend.controller;
 
-import com.event.backend.dto.FindDto;
 import com.event.backend.service.FindService;
-import com.event.backend.repository.FindRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,43 +9,37 @@ import java.util.List;
 
 @RestController
 public class FindController {
+
     private FindService findService;
-//
-    @Autowired
     public FindController(FindService FindService) {
         this.findService = FindService;
     }
-//    private FindRepository findRepository;
-//    public FindController(FindRepository findRepository){
-//    this.findRepository = findRepository;
-//}
-//
-    FindDto findDto = new FindDto();
-// http://localhost:8080/?brand="MINISTOP"&event="1+1"&name="코"
-//@GetMapping()
-//public void findname(@RequestParam(value = "brand") String brand,
-//                     @RequestParam(value = "event") String event,
-//                     @RequestParam(value = "name") String name) throws Exception {
-//    if (findService.findname(brand, event, name )){
-//        System.out.println("connection");
-//    }
-//    else
-//        System.out.println("NO connection");
-//}
-//    @GetMapping()
-//    public void findname(@RequestParam(value = "brand") String brand,
-//                         @RequestParam(value = "event") String event) throws Exception {
-//        if (findService.findname(brand, event )){
-//            System.out.println("connection");
-//        }
-//        else
-//            System.out.println("NO connection");
-//    }
-    @GetMapping()
-    public void findname(@RequestParam(value = "brand") String brand) throws Exception {
-        List itemList = findService.findname(brand);
+
+    @GetMapping("find")
+    public void findbrand(@RequestParam String brand) throws Exception {
+        List itemList = findService.findbrand(brand);
+        System.out.println(brand + "\n");
         for (Object o : itemList) {
-            System.out.println(o);
+            System.out.println(o.toString());
+        }
+    }
+    @GetMapping("find")
+    public void findevent(@RequestParam String brand,
+                         @RequestParam String event) throws Exception {
+        List itemList = findService.findevent(brand, event);
+        System.out.println(brand + "\n" + event);
+        for (Object o : itemList) {
+            System.out.println(o.toString());
+        }
+    }
+    @GetMapping("find")
+    public void findevent(@RequestParam String brand,
+                          @RequestParam String event,
+                          @RequestParam String name ) throws Exception {
+        List itemList = findService.findname(brand, event, name);
+        System.out.println(brand + "\n" + event + "\n" + name);
+        for (Object o : itemList) {
+            System.out.println(o.toString());
         }
     }
 }
